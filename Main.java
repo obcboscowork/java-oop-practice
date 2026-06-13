@@ -1,55 +1,56 @@
-public class Main
-{
-	public static void main(String[]args)
-	{
-		Student s1 = new Student(" Mithun ", 29 , "Informatik" ,90, " Magdeburg ");
-		Student s2 = new Student(" Roxy ", 35, " NuclearMedizine ",100, " Berlin ");
-		Student s3 = new Student(" Naggesh ", 24," Intelligent Manufacturing ",95, " Bremerhafen ");
-		Student s4 = new Student(" Shaktesh ",27," Intelligent Manufacturing ",93," Wolfsburg Hauptbahnhof ");
-		Student s5 = new Student(" Nandu",25," Intelligent Manufacturing ",99, " Nepali Lautenthal ");
-	
-		System.out.println("======INTRODUCTION======");
-		s1.introduce();
-		s2.introduce();
-		s3.introduce();
-		s4.introduce();
-		s5.introduce();
-		
-		System.out.println("\n=======DETAILS=======");
-		s1.showDetails();
-		s2.showDetails();
-		s3.showDetails();
-		s4.showDetails();
-		s5.showDetails();
-		
-		System.out.println("\n=======PASS/FAIL=======");
-		Student[] students = {s1,s2,s3,s4,s5};
-		for(int i = 0 ; i < students.length ; i++)
-		{
-			if(students[i].hasPassed())
-			{
-				System.out.println(students[i].name + "->PASSED");
-			}
-			else
-			{
-				System.out.println(students[i].name + "->FAILED");
-			}
-		}
+public class Main {
+    public static void main(String[] args) {
 
-		System.out.println("\n=======CLASS AVERAGE =====");
-		double total = 0;
-		for(int i = 0; i <students.length; i++)
-		{
-			total += students[i].grade;
-		}
-		double average = total / students.length;
-		System.out.println("Class average: " + average);
+        Student s1 = new Student("Oishik", 25,
+                                 "Informatik", 88, "Magdeburg");
+        Student s2 = new Student("Roxy", 35,
+                                 "Nuclear Medicine", 100, "Berlin");
+        Student s3 = new Student("Mithun", 29,
+                                 "Informatik", 90, "Magdeburg");
 
-		System.out.println("\n=========BIRTHDAYS=======");
-		s1.birthday();
-		s2.birthday();
-		s3.birthday();
-		s4.birthday();
-		s5.birthday();
-	}
+        // NORMAL use
+        System.out.println("===== INTRODUCTIONS =====");
+        s1.introduce();
+        s2.introduce();
+        s3.introduce();
+
+        System.out.println("\n===== DETAILS =====");
+        s1.showDetails();
+        s2.showDetails();
+        s3.showDetails();
+
+        // TEST GETTERS — reading private fields
+        System.out.println("\n===== GETTERS =====");
+        System.out.println("Name  : " + s1.getName());
+        System.out.println("Age   : " + s1.getAge());
+        System.out.println("Grade : " + s1.getGrade());
+
+        // TEST SETTERS — valid changes
+        System.out.println("\n===== VALID UPDATES =====");
+        s1.setGrade(95);
+        System.out.println("Oishik new grade: " + s1.getGrade());
+        s1.setName("Oishik Bhanja");
+        System.out.println("Oishik new name: " + s1.getName());
+
+        // TEST SETTERS — invalid changes (should be blocked!)
+        System.out.println("\n===== INVALID UPDATES (should be blocked) =====");
+        s1.setGrade(-500);    // blocked!
+        s1.setAge(-99);       // blocked!
+        s1.setName("");       // blocked!
+
+        // confirm values didn't change
+        System.out.println("Grade still: " + s1.getGrade());
+        System.out.println("Age still  : " + s1.getAge());
+
+        // PASS / FAIL
+        System.out.println("\n===== PASS / FAIL =====");
+        Student[] students = {s1, s2, s3};
+        for (int i = 0; i < students.length; i++) {
+            if (students[i].hasPassed()) {
+                System.out.println(students[i].getName() + " -> PASSED");
+            } else {
+                System.out.println(students[i].getName() + " -> FAILED");
+            }
+        }
+    }
 }
